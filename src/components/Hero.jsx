@@ -7,14 +7,20 @@ const Hero = () => {
         <img
           src="/images/money_bag.svg"
           width={100}
+          height={100}
           className="absolute top-1/3 right-2/3 w-[75px] xs:w-[100px]"
         />
-        <img src="/images/mic.svg" width={550}/>
+        <img src="/images/mic.png" width={550} height={800} />
       </div>
       {/* content */}
       <div className="-mt-20 xs:-mt-64 sm:-mt-96 lg:-mt-[650px] xl:-mt-[670px]">
-        <img src="/images/wave.png" width={500} className="xs:w-[300px] lg:w-[500px]"/>
-        <div className="flex flex-col gap-y-6 mt-12 lg:mt-44 xl:mt-12 text-black font-futuraMdBt">
+        <img
+          src="/images/wave.png"
+          width={500}
+          height={250}
+          className="xs:w-[300px] lg:w-[500px]"
+        />
+        <div className="flex flex-col gap-y-6 mt-12 lg:mt-44 xl:mt-12">
           <h1 className="font-bold text-3xl xs:text-4xl md:text-5xl lg:text-7xl  tracking-tighter">
             Your Podcast Hosting
             <span className="block mt-2">and Monetizing Platform</span>

@@ -4,6 +4,8 @@ import {
   faXmark,
   faBars,
   faMagnifyingGlass,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 
@@ -18,10 +20,26 @@ const Navbar = ({}) => {
   useEffect(()=>{
     setShow(false)
   },[location])
+
+  const [dark, setDark] = useState(document.documentElement.classList.contains('dark'))
+  const toggleTheme = () => {
+    if (dark) {
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("theme", "light")
+      setDark(false)
+      return
+    }
+    document.documentElement.classList.add("dark")
+    localStorage.setItem("theme", "dark")
+    setDark(true)
+  }
   return (
     <>
-      <nav className="font-futuraMd navbar text-black px-10 xl:px-20 py-6 absolute top-0 left-0 z-10 h-36">
-        <NavLink to="/" className="mr-8">
+      <nav className="font-futuraMd navbar text-black px-10 xl:px-20 py-6 absolute top-0 left-0 z-10 h-36 dark:text-white">
+        <NavLink
+          to="/"
+          className="mr-8 h-fit rounded-lg p-2 dark:border-2 dark:border-cyan-500"
+        >
           <img src="/images/podfi.png" width={100} />
         </NavLink>
         <div className="flex justify-end gap-x-4 xl:justify-between w-full">
@@ -52,14 +70,14 @@ const Navbar = ({}) => {
             />
             <input
               id="search"
-              name='search'
+              name="search"
               type="text"
               placeholder="Search"
               className="input w-24 md:w-auto pl-9 placeholder-current border-current border-2 rounded-xl bg-transparent focus:border-cyan-500 focus:outline-cyan-500"
             />
           </form>
-          {/* signup/in btns and wallet */}
-          <div className="hidden xs:flex items-center gap-x-4">
+          {/* signup/in btns / wallet/ theme */}
+          <div className="hidden xs:flex items-center gap-x-2">
             <NavLink
               to="/signup"
               className="underline text-white hover:text-cyan-500"
@@ -76,8 +94,15 @@ const Navbar = ({}) => {
               to="/signup"
               className="bg-cyan-800 hover:bg-cyan-900 p-3 rounded-xl"
             >
-              <img src="/images/wallet.svg" width={18} />
+              <img src="/images/wallet.svg" width={18} height={18} />
             </NavLink>
+            {/* theme icon */}
+            <button onClick={toggleTheme} className="hidden xl:inline">
+              <FontAwesomeIcon
+                icon={dark ? faSun : faMoon}
+                className="w-6 h-6 text-white"
+              />
+            </button>
           </div>
           {/* toggler icon */}
           <div className="inline xl:hidden text-white">
@@ -107,8 +132,8 @@ const Navbar = ({}) => {
           tabIndex={0}
           className={
             show
-              ? "flex flex-col items-center gap-y-4 the-content py-8 text-center text-black bg-white  w-screen absolute left-0 top-36 h-fit xl:hidden"
-              : "flex flex-col items-center gap-y-4 the-content py-0 text-center text-black bg-white  w-screen absolute left-0 top-36 h-0 collapse rounded-none"
+              ? "flex flex-col items-center gap-y-4 the-content py-8 text-center text-black bg-white dark:bg-neutral-800 dark:text-white  w-screen absolute left-0 top-36 h-fit xl:hidden"
+              : "flex flex-col items-center gap-y-4 the-content py-0 text-center text-black bg-white dark:bg-neutral-800 dark:text-white w-screen absolute left-0 top-36 h-0 collapse rounded-none"
           }
         >
           {/* search bar */}
@@ -160,6 +185,10 @@ const Navbar = ({}) => {
               </li>
             )
           })}
+          {/* theme icon */}
+          <button onClick={toggleTheme} className="inline xl:hidden">
+            <FontAwesomeIcon icon={dark ? faSun : faMoon} className="w-6 h-6" />
+          </button>
         </ul>
       </nav>
     </>

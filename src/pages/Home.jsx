@@ -3,25 +3,41 @@ import Reviews from "../components/Reviews"
 import Hero from "../components/Hero"
 const HomePage = () => {
   return (
-    <div className="px-10 xl:px-20 font-futuraMd">
+    <div className="px-10 xl:px-20 font-futuraMd text-black dark:text-white">
       <Hero />
       {/* tech used */}
       <div className="flex flex-col sm:flex-row gap-x-4 gap-y-6 flex-wrap lg:flex-nowrap lg:gap-x-0 justify-center items-center w-fit bg-cyan-100 rounded-xl mx-auto my-32 py-4">
         <img
+          loading="lazy"
           src="/images/avalanche.svg"
           width={250}
+          height={150}
           className="lg:-mr-4"
         />
-        <img src="/images/movement.svg" width={250} />
         <img
+          loading="lazy"
+          src="/images/movement.svg"
+          width={250}
+          height={150}
+        />
+        <img
+          loading="lazy"
           src="/images/chainlink.svg"
           width={250}
+          height={150}
           className="-ml-4"
         />
-        <img src="/images/solidity.svg" width={170} />
         <img
+          loading="lazy"
+          src="/images/solidity.svg"
+          width={170}
+          height={100}
+        />
+        <img
+          loading="lazy"
           src="/images/particle.svg"
           width={70}
+          height={70}
           className="md:mr-8"
         />
       </div>
@@ -31,8 +47,10 @@ const HomePage = () => {
         <div className="border-blue-500 border rounded-3xl w-fit h-fit bg-blue-500">
           <div className="border-blue-500 border rounded-3xl w-fit h-fit p-12 rounded-tr-[200px] bg-white flex justify-center items-center">
             <img
+              loading="lazy"
               src="/images/frame1.svg"
               width={200}
+              height={200}
               className="w-[150px] md:w-[200px]"
             />
           </div>
@@ -41,8 +59,10 @@ const HomePage = () => {
         <div className="border-blue-500 border rounded-3xl w-fit h-fit bg-blue-500">
           <div className="border-blue-500 border rounded-3xl w-fit h-fit p-12 rounded-tr-[200px] bg-white flex justify-center items-center">
             <img
+              loading="lazy"
               src="/images/frame2.svg"
               width={200}
+              height={200}
               className="w-[150px] md:w-[200px]"
             />
           </div>
@@ -51,8 +71,10 @@ const HomePage = () => {
         <div className="border-blue-500 border rounded-3xl w-fit h-fit bg-blue-500">
           <div className="border-blue-500 border rounded-3xl w-fit h-fit p-12 rounded-tr-[200px] bg-white flex justify-center items-center">
             <img
+              loading="lazy"
               src="/images/frame3.svg"
               width={200}
+              height={200}
               className="w-[150px] md:w-[200px]"
             />
           </div>
@@ -62,32 +84,38 @@ const HomePage = () => {
       <div className="flex flex-col lg:flex-row justify-between items-center gap-6 max-w-screen-xl mx-auto my-32">
         <div className="w-fit h-fit">
           <img
-            src="/images/text1.svg"
+            loading="lazy"
+            src="/images/text1.png"
             width={350}
+            height={300}
             className="w-[250px] md:w-[350px]"
           />
         </div>
-        <div className="w-fit h-fit">
+        <div className="w-fit h-fit bg-white rounded-full">
           <img
+            loading="lazy"
             src="/images/centered_circle.svg"
             width={350}
+            height={350}
             className="w-[250px] md:w-[350px]"
           />
         </div>
         <div className="w-fit h-fit">
           <img
-            src="/images/text2.svg"
+            loading="lazy"
+            src="/images/text2.png"
             width={350}
+            height={300}
             className="w-[250px] md:w-[350px]"
           />
         </div>
       </div>
       <hr className="h-1 bg-blue-500 w-8/12 mx-auto border-0" />
       {/* features */}
-      <section className="text-black text-center flex flex-col lg:flex-row gap-y-28 gap-x-12 justify-between items-center lg:items-start max-w-screen-xl mx-auto my-32">
+      <section className="text-center flex flex-col lg:flex-row gap-y-28 gap-x-12 justify-between items-center lg:items-start max-w-screen-xl mx-auto my-32">
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
-          <img src="/images/coins.svg" width={100}/>
+          <img src="/images/coins.svg" width={100} height={100} loading="lazy"/>
           <h2 className="text-3xl xs:text-4xl max-w-[210px] mt-9 mb-5">
             Monetization Made Easy
           </h2>
@@ -99,7 +127,7 @@ const HomePage = () => {
         </div>
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
-          <img src="/images/money_and_clock.svg" width={100} />
+          <img src="/images/money_and_clock.svg" width={100} height={100} loading="lazy"/>
           <h2 className="text-3xl xs:text-4xl  mt-9 mb-5">
             Transparent & Timely Payments
           </h2>
@@ -110,7 +138,7 @@ const HomePage = () => {
         </div>
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
-          <img src="/images/proportions.svg" width={100} />
+          <img src="/images/proportions.svg" width={100} height={100} loading="lazy"/>
           <h2 className="text-3xl xs:text-4xl max-w-[250px] mt-9 mb-5">
             No Exclusivity Required
           </h2>
@@ -123,7 +151,7 @@ const HomePage = () => {
       </section>
       <hr className="h-1 bg-blue-500 w-8/12 mx-auto border-0" />
       {/* get started */}
-      <section className="font-futuraBk text-center text-black max-w-screen-xl mx-auto my-32">
+      <section className="font-futuraBk text-center max-w-screen-xl mx-auto my-32">
         <h1 className="font-bold text-4xl xs:text-5xl font-roboto">
           Get Started
         </h1>
@@ -136,10 +164,16 @@ const HomePage = () => {
           <div className="flex flex-col max-w-[350px] items-center gap-y-5">
             {/* image */}
             <div className="relative h-24 w-24">
-              <img src="/images/ellipse_larger.svg" className="w-full" />
+              <img
+                src="/images/ellipse_larger.svg"
+                width={96}
+                height={96}
+                className="w-full"
+              />
               <img
                 src="/images/ellipse_smaller.svg"
                 width={70}
+                height={70}
                 className="absolute top-3 left-3"
               />
               <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-500 to-sky-900 absolute top-6 left-8">
@@ -159,10 +193,16 @@ const HomePage = () => {
           <div className="flex flex-col max-w-[350px] items-center gap-y-5">
             {/* image */}
             <div className="relative h-24 w-24">
-              <img src="/images/ellipse_larger.svg" className="w-full" />
+              <img
+                src="/images/ellipse_larger.svg"
+                width={96}
+                height={96}
+                className="w-full"
+              />
               <img
                 src="/images/ellipse_smaller.svg"
                 width={70}
+                height={70}
                 className="absolute top-3 left-3"
               />
               <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-500 to-sky-900 absolute top-6 left-8">
@@ -179,10 +219,16 @@ const HomePage = () => {
           <div className="flex flex-col max-w-[350px] items-center gap-y-5">
             {/* image */}
             <div className="relative h-24 w-24">
-              <img src="/images/ellipse_larger.svg" className="w-full" />
+              <img
+                src="/images/ellipse_larger.svg"
+                width={96}
+                height={96}
+                className="w-full"
+              />
               <img
                 src="/images/ellipse_smaller.svg"
                 width={70}
+                height={70}
                 className="absolute top-3 left-3"
               />
               <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-500 to-sky-900 absolute top-6 left-8">

@@ -18,7 +18,7 @@ const Footer = () => {
         {/* branding */}
         <div className="flex flex-col items-center lg:items-start max-w-[365px] gap-y-8">
           <Link to="/">
-            <img src="/images/podfi.png" width={150} />
+            <img src="/images/podfi.png" width={150} height={100} />
           </Link>
           <p>
             Lörem ipsum od ohet dilogi. Bell trabel, samuligt, ohöbel utom
