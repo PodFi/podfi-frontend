@@ -53,22 +53,9 @@ body {
   }
 }
 
-/* swiper */
-.swiper-pagination {
-  top: 0 !important;
-}
 
-:root {
-  --swiper-pagination-bullet-width: 20px !important;
-  --swiper-pagination-bullet-height: 20px !important;
-}
 
-.swiper-pagination-bullet-active {
-  background-color: white !important;
-}
-
-/* end swiper */
-
+/* navbar toggler icon and dropdown */
 .nav-icon-toggler {
   transition: all 0.3s;
 }

@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react"
 // Import Swiper styles
 import "swiper/css"
 import "swiper/css/pagination"
-
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules"
 
@@ -19,6 +18,14 @@ const Reviews = () => {
       </p>
       {/* carousel */}
       <Swiper
+        style={{
+          "--swiper-pagination-color": "#fff",
+          "--swiper-pagination-bullet-inactive-color": "#000",
+          "--swiper-pagination-bullet-inactive-opacity": "0.5",
+          "--swiper-pagination-bullet-size": "20px",
+          "--swiper-pagination-top": "0",
+          "--swiper-pagination-bottom": "auto",
+        }}
         loop={true}
         spaceBetween={30}
         centeredSlides={true}

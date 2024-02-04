@@ -6,12 +6,14 @@ export default {
   theme: {
     screens: {
       xs: "540px",
+      xxs:'440px',
       ...defaultTheme.screens,
     },
     extend: {
       backgroundImage: {
         feedbackBg: "url('/images/feedback_bg.svg')",
         signupBg: "url('/images/signup_bg.svg')",
+        adsMarketplaceBg: "url('/images/ads_marketplace_bg.svg')",
       },
       fontFamily: {
         futuraMd: ["FuturaMd"],
