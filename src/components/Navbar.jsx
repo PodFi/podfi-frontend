@@ -64,7 +64,10 @@ const Navbar = ({ user, dark, setDark }) => {
           })}
         </ul>
         {/* search bar */}
-        <form className="ms-auto me-auto hidden md:flex relative text-sky-900 dark:text-blue-300" action="">
+        <form
+          className="ms-auto me-auto hidden md:flex relative text-sky-900 dark:text-blue-300"
+          action=""
+        >
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="w-4 h-4 absolute top-4 left-3"
@@ -82,7 +85,7 @@ const Navbar = ({ user, dark, setDark }) => {
           {user ? (
             <NavLink
               to={`/profile/${user.username}`}
-              className="flex items-center gap-x-1 mr-12 text-white hover:text-cyan-500"
+              className="flex items-center gap-x-1 mr-12 text-xl hover:text-cyan-500"
             >
               <div className="rounded-full w-12 h-12 border-2 border-sky-900 overflow-hidden">
                 {user.profilePicture ? (
@@ -98,13 +101,27 @@ const Navbar = ({ user, dark, setDark }) => {
                   />
                 )}
               </div>
-              <span className="text-xl">{user.username}</span>
+              <span
+                className={
+                  location.pathname === "/" ||
+                  location.pathname === "/ads-marketplace"
+                    ? "text-white"
+                    : "text-sky-900 dark:text-white"
+                }
+              >
+                {user.username}
+              </span>
             </NavLink>
           ) : (
             <>
               <NavLink
                 to="/signup"
-                className="underline text-white hover:text-cyan-500"
+                className={
+                  location.pathname === "/" ||
+                  location.pathname === "/ads-marketplace"
+                    ? "underline text-white hover:text-cyan-500"
+                    : "underline text-sky-900 dark:text-white hover:text-cyan-500"
+                }
               >
                 Sign up
               </NavLink>
@@ -117,7 +134,7 @@ const Navbar = ({ user, dark, setDark }) => {
             </>
           )}
           <NavLink
-            to="/earnings"
+            to="/earning"
             className={
               user
                 ? "bg-cyan-500 hover:bg-cyan-600 p-3 rounded-xl"
@@ -127,15 +144,27 @@ const Navbar = ({ user, dark, setDark }) => {
             <img src="/images/wallet.svg" width={18} height={18} />
           </NavLink>
           {/* theme icon */}
-          <button onClick={toggleTheme} className="hidden xl:inline">
-            <FontAwesomeIcon
-              icon={dark ? faSun : faMoon}
-              className="w-6 h-6 text-white hover:text-cyan-500"
-            />
+          <button
+            onClick={toggleTheme}
+            className={
+              location.pathname === "/" ||
+              location.pathname === "/ads-marketplace"
+                ? "hidden xl:inline text-white hover:text-cyan-500"
+                : "hidden xl:inline text-sky-900 dark:text-white hover:text-cyan-500 dark:hover:text-cyan-500"
+            }
+          >
+            <FontAwesomeIcon icon={dark ? faSun : faMoon} className="w-6 h-6" />
           </button>
         </div>
         {/* toggler icon */}
-        <div className="inline xl:hidden text-white">
+        <div
+          className={
+            location.pathname === "/" ||
+            location.pathname === "/ads-marketplace"
+              ? "inline xl:hidden text-white"
+              : "inline xl:hidden text-sky-900 dark:text-white"
+          }
+        >
           <div
             tabIndex={0}
             role="button"
@@ -203,10 +232,7 @@ const Navbar = ({ user, dark, setDark }) => {
             </NavLink>
           ) : (
             <>
-              <NavLink
-                to="/signup"
-                className="underline text-white hover:text-cyan-500"
-              >
+              <NavLink to="/signup" className="underline hover:text-cyan-500">
                 Sign up
               </NavLink>
               <NavLink

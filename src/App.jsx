@@ -4,6 +4,8 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Earning from "./pages/Earning";
 import AdsMarketplace from "./pages/AdsMarketplace";
+import Profile from "./pages/Profile"
+import CreateLivestream from "./pages/CreateLivestream";
 import Error from "./pages/Error";
 import Layout from "./pages/Layout";
 import { useState } from "react";
@@ -18,6 +20,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/earning" element={<Earning />} />
           <Route path="/ads-marketplace" element={<AdsMarketplace dark={dark}/>} />
+          <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/create-livestream" element={<CreateLivestream />} />
           <Route path="*" element={<Error />} />
         </Route>
         <Route path="/signup" element={<Signup />} />

@@ -6,7 +6,7 @@ export default {
   theme: {
     screens: {
       xs: "540px",
-      xxs:'440px',
+      xxs: "440px",
       ...defaultTheme.screens,
     },
     extend: {
@@ -23,5 +23,8 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("daisyui"),
+  ],
 }
