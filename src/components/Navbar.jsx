@@ -1,5 +1,5 @@
-import { Link,NavLink, useLocation } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faXmark,
   faBars,
@@ -7,43 +7,43 @@ import {
   faSun,
   faMoon,
   faUser,
-} from "@fortawesome/free-solid-svg-icons"
-import { useEffect, useState } from "react"
+} from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { ConnectButton } from "@particle-network/connect-react-ui"; // @particle-network/connectkit to use Auth Core
 
 const links = [
   { href: "/ads-marketplace", label: "Ads Marketplace" },
   { href: "/#features", label: "Features" },
-]
+];
 const Navbar = ({ user, dark, setDark }) => {
-  const [show, setShow] = useState(false)
-  const location = useLocation()
+  const [show, setShow] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     if (show) {
-      setShow(false)
+      setShow(false);
     }
 
     //handle navigation to features
     if (location.hash) {
-      const targetElement = document.getElementById(location.hash.substring(1))
+      const targetElement = document.getElementById(location.hash.substring(1));
 
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" })
+        targetElement.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [location])
-  
+  }, [location]);
 
   const toggleTheme = () => {
     if (dark) {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-      setDark(false)
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setDark(false);
     } else {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-      setDark(true)
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setDark(true);
     }
-  }
+  };
   return (
     <nav className="font-futuraMd navbar text-black px-10 xl:px-20 py-6 absolute top-0 left-0 z-10 h-36 dark:text-white">
       <NavLink
@@ -55,18 +55,15 @@ const Navbar = ({ user, dark, setDark }) => {
       <div className="flex justify-end gap-x-4 xl:justify-between w-full">
         {/* pages */}
         <ul className="gap-x-8 px-1 text-xl hidden xl:flex">
-          {links.map((link,index,array) => {
-            if (index === array.length - 1){
+          {links.map((link, index, array) => {
+            if (index === array.length - 1) {
               return (
                 <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="hover:text-cyan-500"
-                  >
+                  <Link to={link.href} className="hover:text-cyan-500">
                     {link.label}
                   </Link>
                 </li>
-              )
+              );
             }
             return (
               <li key={link.href}>
@@ -81,7 +78,7 @@ const Navbar = ({ user, dark, setDark }) => {
                   {link.label}
                 </NavLink>
               </li>
-            )
+            );
           })}
         </ul>
         {/* search bar */}
@@ -103,6 +100,7 @@ const Navbar = ({ user, dark, setDark }) => {
         </form>
         {/* signup/in btns / wallet/ theme */}
         <div className="hidden xs:flex items-center gap-x-2">
+          <ConnectButton />
           {user ? (
             <NavLink
               to={`/profile/${user.username}`}
@@ -275,18 +273,15 @@ const Navbar = ({ user, dark, setDark }) => {
             <img src="/images/wallet.svg" width={18} height={18} />
           </NavLink>
         </div>
-        {links.map((link,index,array) => {
-          if (index === array.length - 1){
+        {links.map((link, index, array) => {
+          if (index === array.length - 1) {
             return (
               <li key={link.href}>
-                <Link
-                  to={link.href}
-                  className="hover:text-cyan-500"
-                >
+                <Link to={link.href} className="hover:text-cyan-500">
                   {link.label}
                 </Link>
               </li>
-            )
+            );
           }
           return (
             <li key={link.href}>
@@ -301,7 +296,7 @@ const Navbar = ({ user, dark, setDark }) => {
                 {link.label}
               </NavLink>
             </li>
-          )
+          );
         })}
         {/* theme icon */}
         <button onClick={toggleTheme} className="block xl:hidden">
@@ -312,6 +307,6 @@ const Navbar = ({ user, dark, setDark }) => {
         </button>
       </ul>
     </nav>
-  )
-}
-export default Navbar
+  );
+};
+export default Navbar;
