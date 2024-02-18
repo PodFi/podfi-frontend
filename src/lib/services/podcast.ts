@@ -15,6 +15,14 @@ type PodcastWithStreams = Podcast & {
   streams: Streams
 }
 
+type PodcastCreatedHandle = PodcastWithStreams & {
+  end: () => Promise<Result<undefined, string>>
+}
+
+type PodcastJoinedHandle = PodcastWithStreams & {
+  onEnded: (cb: () => void) => void
+}
+
 const servers = {
   iceServers: [
     {
@@ -32,15 +40,25 @@ interface Database {
   createPodcast: (id: string, iceCandidateOffer: IceCandidateOffer) => Promise<Result<undefined, string>>
   getPodcast: (id: string) => Promise<Result<IceCandidateOffer, string>>
   joinPodcast: (id: string, iceCandidateOffer: IceCandidateOffer) => Promise<Result<undefined, string>>
+  endPodcast: (id: string) => Promise<Result<undefined, string>>
 }
 
 class PodcastService {
   constructor(private db: Database) { }
 
-  createPodcast(): Promise<Result<PodcastWithStreams, string>> {
+  async endPodcast(id: string): Promise<Result<undefined, string>> {
+    const endPodcastResult = await this.db.endPodcast(id)
+
+    if (endPodcastResult.isErr)
+      return Result.err(endPodcastResult.error)
+
+    return Result.ok(undefined)
+  }
+
+  createPodcast(): Promise<Result<PodcastCreatedHandle, string>> {
     const id = nanoid()
 
-    return new Promise<Result<PodcastWithStreams, string>>((resolve, reject) => {
+    return new Promise<Result<PodcastCreatedHandle, string>>((resolve, reject) => {
       this.setupCreateStream()
         .then(({ offer, candidates, event }) => {
           event.on("finish-preparation", async (streams) => {
@@ -55,7 +73,8 @@ class PodcastService {
             else {
               resolve(Result.ok({
                 id,
-                streams
+                streams,
+                end: () => this.endPodcast(id)
               }))
             }
           })
@@ -144,14 +163,14 @@ class PodcastService {
     return stream
   }
 
-  async joinPodcast(id: string): Promise<Result<Podcast, string>> {
+  async joinPodcast(id: string): Promise<Result<PodcastJoinedHandle, string>> {
     const podcast = await this.db.getPodcast(id)
 
     if (podcast.isErr)
       return Result.err(podcast.error)
 
 
-    return new Promise<Result<PodcastWithStreams, string>>((resolve, reject) => {
+    return new Promise<Result<PodcastJoinedHandle, string>>((resolve, reject) => {
       this.setupJoinStreams(podcast.value)
         .then(({ offer, candidates, event }) => {
           event.on("finish-preparation", async (streams) => {
@@ -166,7 +185,10 @@ class PodcastService {
             else {
               resolve(Result.ok({
                 id,
-                streams
+                streams,
+                onEnded: (cb: () => void) => {
+                  // TODO: logic to listen for podcast ended and then call cb
+                }
               }))
             }
           })
