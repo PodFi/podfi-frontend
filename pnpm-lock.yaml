@@ -34,6 +34,9 @@ dependencies:
   swiper:
     specifier: ^11.0.5
     version: 11.0.5
+  true-myth:
+    specifier: ^7.1.0
+    version: 7.1.0
 
 devDependencies:
   '@types/react':
@@ -2767,6 +2770,11 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
+
+  /true-myth@7.1.0:
+    resolution: {integrity: sha512-DcdyFRHfNyG31HgNtxqrVAHmBf7y1w4YZCpU7IR2Ohytm4LITv+u075Vc3dLyK9cdEPq6K9398iao6YpkU8hHA==}
+    engines: {node: 18.* || >= 20.*}
+    dev: false
 
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
