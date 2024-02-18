@@ -53,8 +53,6 @@ body {
   }
 }
 
-
-
 /* navbar toggler icon and dropdown */
 .nav-icon-toggler {
   transition: all 0.3s;
@@ -67,3 +65,18 @@ body {
 .the-content {
   transition: all 0.3s;
 }
+
+
+
+.profile-swiper .swiper-slide {
+  filter: brightness(0.2);
+}
+.profile-swiper .swiper-slide-active {
+  filter: brightness(1);
+  border: 3px solid #3b82f6;
+  scale: 1.2;
+}
+
+
+
+input[type='range']{ accent-color: #172554; }

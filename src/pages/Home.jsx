@@ -112,7 +112,7 @@ const HomePage = () => {
       </div>
       <hr className="h-1 bg-blue-500 w-8/12 mx-auto border-0" />
       {/* features */}
-      <section className="text-center flex flex-col lg:flex-row gap-y-28 gap-x-12 justify-between items-center lg:items-start max-w-screen-xl mx-auto my-32">
+      <section id="features" className="text-center flex flex-col lg:flex-row gap-y-28 gap-x-12 justify-between items-center lg:items-start max-w-screen-xl mx-auto py-32">
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
           <img src="/images/coins.svg" width={100} height={100} loading="lazy"/>

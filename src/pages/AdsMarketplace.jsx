@@ -10,91 +10,10 @@ import "swiper/css/pagination"
 // import required modules
 import { Pagination } from "swiper/modules"
 
-const AdsMarketplace = ({ dark }) => {
-  //fetching data from api
-  //assuming this is the return
-  const podcasts = {
-    ongoingEvents: [
-      { id: 1, imageUrl: "/images/photo.jpg", details: "" },
-      { id: 2, imageUrl: "/images/photo.jpg", details: "" },
-      { id: 3, imageUrl: "/images/photo.jpg", details: "" },
-      { id: 4, imageUrl: "/images/photo.jpg", details: "" },
-    ],
-    popular: [
-      {
-        id: 1,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast1",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 2,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast2",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 3,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast3",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 4,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast4",
-        listenings: 20,
-        likes: 20,
-      },
-    ],
-    featured: [
-      {
-        id: 1,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast1",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 2,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast2",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 3,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast3",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 4,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast4",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 5,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast5",
-        listenings: 20,
-        likes: 20,
-      },
-      {
-        id: 6,
-        imageUrl: "/images/photo.jpg",
-        title: "podcast6",
-        listenings: 20,
-        likes: 20,
-      },
-    ],
-  }
+import {podcasts} from '../demoData'
+
+const AdsMarketplace = ({ dark,user }) => {
+  const livestream = podcasts.filter((podcast) => podcast.livestream)
   return (
     <div className="px-4 xs:px-10 lg:px-20 xl:px-32 font-futuraMd text-black dark:text-white w-full">
       {/* nav bg */}
@@ -106,7 +25,7 @@ const AdsMarketplace = ({ dark }) => {
         />
       </div>
       {/* ongoing events */}
-      {podcasts?.ongoingEvents.length ? (
+      {livestream.length ? (
         <section>
           <div className="flex items-center gap-x-4">
             <img
@@ -141,17 +60,13 @@ const AdsMarketplace = ({ dark }) => {
             slidesPerView={1}
             spaceBetween={30}
             breakpoints={{
-              540: {
+              832: {
                 slidesPerView: 2,
-                spaceBetween: 50,
+                spaceBetween: 32,
               },
-              768: {
+              1400: {
                 slidesPerView: 3,
-                spaceBetween: 30,
-              },
-              1000: {
-                slidesPerView: 3,
-                spaceBetween: 100,
+                spaceBetween: 32,
               },
             }}
             pagination={{
@@ -159,19 +74,11 @@ const AdsMarketplace = ({ dark }) => {
               dynamicBullets: true,
             }}
             modules={[Pagination]}
-            className="w-full h-fit mt-10 mb-20 xs:my-20"
+            className="w-full h-fit mt-10 mb-20"
           >
-            {podcasts.ongoingEvents.map((event) => (
-              <SwiperSlide
-                key={event.id}
-                className="mb-16 h-64 w-full rounded-tr-[120px] rounded-bl-[120px] rounded-tl-[50px] rounded-br-[50px] overflow-hidden"
-              >
-                <Link to={`/events/${event.id}`} className="w-full h-full">
-                  <img
-                    src={event.imageUrl}
-                    className="w-full h-full object-cover object-center"
-                  />
-                </Link>
+            {livestream.map((podcast) => (
+              <SwiperSlide key={podcast.id} className="mb-16 h-fit w-fit">
+                <PodcastCard podcast={podcast} user={user} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -223,9 +130,9 @@ const AdsMarketplace = ({ dark }) => {
           modules={[Pagination]}
           className="w-full h-fit mt-10 mb-20"
         >
-          {podcasts.popular.map((podcast) => (
+          {podcasts.map((podcast) => (
             <SwiperSlide key={podcast.id} className="mb-16 h-fit w-fit">
-              <PodcastCard podcast={podcast} />
+              <PodcastCard podcast={podcast} user={user} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -236,9 +143,11 @@ const AdsMarketplace = ({ dark }) => {
           Featured Podcasts
         </h1>
         <div className="w-full flex flex-wrap justify-start items-start relative z-0 gap-x-8 gap-y-16 mt-10 mb-40">
-          {podcasts.featured.map((podcast) => (
-            <PodcastCard key={podcast.id} podcast={podcast} />
-          ))}
+          {podcasts
+            .filter((podcast) => podcast.featured)
+            .map((podcast) => (
+              <PodcastCard key={podcast.id} podcast={podcast} user={user} />
+            ))}
         </div>
       </section>
     </div>
