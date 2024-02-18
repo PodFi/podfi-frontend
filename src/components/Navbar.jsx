@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { Link,NavLink, useLocation } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faXmark,
@@ -11,9 +11,8 @@ import {
 import { useEffect, useState } from "react"
 
 const links = [
-  { href: "/podcasting", label: "Podcasting" },
   { href: "/ads-marketplace", label: "Ads Marketplace" },
-  { href: "/features", label: "Features" },
+  { href: "/#features", label: "Features" },
 ]
 const Navbar = ({ user, dark, setDark }) => {
   const [show, setShow] = useState(false)
@@ -22,7 +21,17 @@ const Navbar = ({ user, dark, setDark }) => {
     if (show) {
       setShow(false)
     }
+
+    //handle navigation to features
+    if (location.hash) {
+      const targetElement = document.getElementById(location.hash.substring(1))
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" })
+      }
+    }
   }, [location])
+  
 
   const toggleTheme = () => {
     if (dark) {
@@ -46,7 +55,19 @@ const Navbar = ({ user, dark, setDark }) => {
       <div className="flex justify-end gap-x-4 xl:justify-between w-full">
         {/* pages */}
         <ul className="gap-x-8 px-1 text-xl hidden xl:flex">
-          {links.map((link) => {
+          {links.map((link,index,array) => {
+            if (index === array.length - 1){
+              return (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="hover:text-cyan-500"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            }
             return (
               <li key={link.href}>
                 <NavLink
@@ -254,7 +275,19 @@ const Navbar = ({ user, dark, setDark }) => {
             <img src="/images/wallet.svg" width={18} height={18} />
           </NavLink>
         </div>
-        {links.map((link) => {
+        {links.map((link,index,array) => {
+          if (index === array.length - 1){
+            return (
+              <li key={link.href}>
+                <Link
+                  to={link.href}
+                  className="hover:text-cyan-500"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            )
+          }
           return (
             <li key={link.href}>
               <NavLink
