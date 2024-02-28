@@ -21,8 +21,9 @@ const formWaveSurferOptions = (ref) => ({
   gapWidth: 0.1,
   normalize: true,
   backend: "MediaElement",
-  audioRate:1,
-  preservePitch:true,
+  audioRate: 1,
+  preservePitch: true,
+  dragToSeek: true,
 })
 
 const AudioPlayer = ({ episode, creator, podcastId }) => {
@@ -63,7 +64,6 @@ const AudioPlayer = ({ episode, creator, podcastId }) => {
       setIsPlaying(false)
     })
 
-
     //clean up event listeners and destroy instance on unmount
     return () => {
       setIsPlaying(false)
@@ -81,9 +81,9 @@ const AudioPlayer = ({ episode, creator, podcastId }) => {
     }
 
     wavesurfer.current.playPause()
-    if(wavesurfer.current.isPlaying()){
+    if (wavesurfer.current.isPlaying()) {
       setIsPlaying(true)
-    }else{
+    } else {
       setIsPlaying(false)
     }
   }
@@ -138,7 +138,10 @@ const AudioPlayer = ({ episode, creator, podcastId }) => {
           </button>
 
           {/* Play/Pause Button */}
-          <button onClick={playPauseHandler} className="play text-2xl outline-cyan-500 outline-offset-4 rounded-2xl">
+          <button
+            onClick={playPauseHandler}
+            className="play text-2xl outline-cyan-500 outline-offset-4 rounded-2xl"
+          >
             {isPlaying ? (
               <FontAwesomeIcon icon={faPause} />
             ) : (

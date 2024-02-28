@@ -83,12 +83,29 @@ const Accordion = ({ podcastData, user }) => {
             {podcastData?.episodes?.length ? (
               <>
                 <div className="flex flex-col items-center w-full h-full gap-y-12">
-                  {podcastData.episodes.map((episode) => (
+                  {/* pinned if any */}
+                  {podcastData.episodes
+                    .filter(
+                      (episode) => episode.pinned
+                    )
+                    .map((episode) => (
+                      <SingleEpisode
+                        user={user}
+                        episode={episode}
+                        creator={podcastData.creator}
+                        podcastId={podcastData.id}
+                        podcastTitle={podcastData.title}
+                        key={episode.id}
+                      />
+                    ))}
+                  {/* the rest */}
+                  {podcastData.episodes.filter(episode=>!episode.pinned).map((episode) => (
                     <SingleEpisode
                       user={user}
                       episode={episode}
                       creator={podcastData.creator}
                       podcastId={podcastData.id}
+                      podcastTitle={podcastData.title}
                       key={episode.id}
                     />
                   ))}

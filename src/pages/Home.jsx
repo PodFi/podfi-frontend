@@ -38,6 +38,13 @@ const HomePage = () => {
           src="/images/particle.svg"
           width={70}
           height={70}
+          className="md:mx-8"
+        />
+        <img
+          loading="lazy"
+          src="/images/bnb_chain_logo.png"
+          width={200}
+          height={200}
           className="md:mr-8"
         />
       </div>
@@ -112,10 +119,18 @@ const HomePage = () => {
       </div>
       <hr className="h-1 bg-blue-500 w-8/12 mx-auto border-0" />
       {/* features */}
-      <section id="features" className="text-center flex flex-col lg:flex-row gap-y-28 gap-x-12 justify-between items-center lg:items-start max-w-screen-xl mx-auto py-32">
+      <section
+        id="features"
+        className="text-center flex flex-col lg:flex-row gap-y-28 gap-x-12 justify-between items-center lg:items-start max-w-screen-xl mx-auto py-32"
+      >
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
-          <img src="/images/coins.svg" width={100} height={100} loading="lazy"/>
+          <img
+            src="/images/coins.svg"
+            width={100}
+            height={100}
+            loading="lazy"
+          />
           <h2 className="text-3xl xs:text-4xl max-w-[210px] mt-9 mb-5">
             Monetization Made Easy
           </h2>
@@ -127,7 +142,12 @@ const HomePage = () => {
         </div>
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
-          <img src="/images/money_and_clock.svg" width={100} height={100} loading="lazy"/>
+          <img
+            src="/images/money_and_clock.svg"
+            width={100}
+            height={100}
+            loading="lazy"
+          />
           <h2 className="text-3xl xs:text-4xl  mt-9 mb-5">
             Transparent & Timely Payments
           </h2>
@@ -138,7 +158,12 @@ const HomePage = () => {
         </div>
         {/* feature */}
         <div className="flex flex-col items-center justify-center max-w-[370px]">
-          <img src="/images/proportions.svg" width={100} height={100} loading="lazy"/>
+          <img
+            src="/images/proportions.svg"
+            width={100}
+            height={100}
+            loading="lazy"
+          />
           <h2 className="text-3xl xs:text-4xl max-w-[250px] mt-9 mb-5">
             No Exclusivity Required
           </h2>

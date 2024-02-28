@@ -85,6 +85,10 @@ const Profile = ({ user }) => {
     }
   }, [activePodcastId])
 
+
+  const [isFollower, setIsFollower] = useState(
+    creatorData.followers.find(follower=>follower.username === user.username)?true:false
+  )
   return (
     <div className="font-futuraMd min-h-screen relative overflow-hidden px-4 xs:px-10 xl:px-20 z-0">
       {/* bg */}
@@ -102,17 +106,23 @@ const Profile = ({ user }) => {
               <div className="flex flex-col xs:flex-row justify-between items-start gap-4">
                 <div className="flex flex-col gap-y-4">
                   {/* username */}
-                  <h2 className="text-2xl xxs:text-3xl">Whyds Creations</h2>
+                  <h2 className="text-2xl xxs:text-3xl">
+                    {creatorData.username}
+                  </h2>
                   {/* followers/followings */}
                   <div className="flex gap-x-12 pl-4">
                     {/* followers */}
                     <div className="flex flex-col items-center">
-                      <h2 className="text-2xl font-bold">500</h2>
+                      <h2 className="text-2xl font-bold">
+                        {creatorData.followers.length}
+                      </h2>
                       <span className="text-cyan-600 text-sm">Followers</span>
                     </div>
                     {/* following */}
                     <div className="flex flex-col items-center">
-                      <h2 className="text-2xl font-bold">500</h2>
+                      <h2 className="text-2xl font-bold">
+                        {creatorData.followings.length}
+                      </h2>
                       <span className="text-cyan-600 text-sm">Following</span>
                     </div>
                   </div>
@@ -121,12 +131,22 @@ const Profile = ({ user }) => {
                 <div className="flex items-center gap-x-2 w-full xs:w-fit">
                   {/* follow/edit profile btn */}
                   {creatorData.username === user.username ? (
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-8 w-full py-2 rounded-xl">
+                    <button onClick={()=>navigate(`/profile/${creatorData.username}/edit`)} className="bg-blue-500 hover:bg-blue-600 text-white px-8 w-full py-2 rounded-xl">
                       Edit Profile
                     </button>
                   ) : (
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-8 w-full py-2 rounded-xl">
-                      Follow
+                    <button
+                      onClick={()=>{
+                        // send req to add/remove current user to the followers' list of creatorProfile
+                        setIsFollower(prev=>!prev)
+                      }}
+                      className={
+                        isFollower
+                          ? "border-2 border-blue-500 hover:border-cyan-500 text-blue-500 hover:text-cyan-500 px-8 w-full py-2 rounded-xl"
+                          : "bg-blue-500 hover:bg-blue-600 text-white px-8 w-full py-2 rounded-xl"
+                      }
+                    >
+                      {isFollower ? "Unfollow" : "Follow"}
                     </button>
                   )}
                   {/* profile share btn */}
@@ -154,7 +174,7 @@ const Profile = ({ user }) => {
               </div>
 
               {/* bio */}
-              <p className="py-4">NEW Sme</p>
+              <p className="py-4">{creatorData.bio}</p>
             </div>
             {/* podcast container */}
             <div className="w-full h-fit rounded-3xl bg-neutral-200 dark:bg-neutral-900 p-4 xxs:p-8 flex flex-col gap-y-4">

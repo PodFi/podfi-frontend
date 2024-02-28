@@ -91,13 +91,13 @@ const SinglePodcastPage = ({user}) => {
             </svg>
             <Share shareUrl={`${window.location.href}`} />
           </div>
-          {/* join livestream */}
+          {/* join podcast */}
           {podcast.livestream ? (
             <Link
-              to={`/profile/${podcast.creator}`}
+              to={`/profile/${podcast.creator}/${podcast.id}`}
               className="w-max text-nowrap bg-blue-500 rounded-lg text-white p-2 xxs:p-4 hover:bg-blue-600"
             >
-              Join Livestream
+              Join Podcast
             </Link>
           ) : (
             ""

@@ -73,7 +73,6 @@ export const podcasts = [
   },
 ]
 
-
 export let users = [
   {
     id: 1,
@@ -81,8 +80,22 @@ export let users = [
     profilePicture: "/images/user1.png",
     tokens: 10,
     nft: 1,
-    followers: 1,
-    followings: 1,
+    followers: [
+      {
+        id: 2,
+        username: "user2",
+        profilePicture: "/images/user2.png",
+        tokens: 10,
+        nft: 1,
+        followers: 1,
+        followings: 1,
+        bio: "Here goes bio",
+        favoriteEpisodes: [],
+        podcasts: [],
+      },
+    ], // each obj represents user
+    followings: [], // same as above
+    bio: "Here goes bio",
     favoriteEpisodes: [],
     podcasts: [
       {
@@ -99,9 +112,11 @@ export let users = [
           {
             id: 1,
             title: "episode1",
+            pinned: false,
             likes: 1,
             listening: 1,
             comments: [],
+            poll:'',
             host: "user1",
             participants: [
               {
@@ -125,9 +140,11 @@ export let users = [
           {
             id: 2,
             title: "episode2",
+            pinned: false,
             likes: 1,
             listening: 1,
             comments: [],
+            poll:'',
             host: "user1",
             participants: [
               {
@@ -164,9 +181,11 @@ export let users = [
           {
             id: 3,
             title: "episode1",
+            pinned: false,
             likes: 1,
             listening: 1,
             comments: [],
+            poll:'',
             host: "user1",
             participants: [
               {
@@ -245,8 +264,9 @@ export let users = [
     profilePicture: "/images/user2.png",
     tokens: 10,
     nft: 1,
-    followers: 1,
-    followings: 1,
+    followers: [], // each obj represents user
+    followings: [], // same as above
+    bio: "Here goes bio",
     favoriteEpisodes: [],
     podcasts: [],
   },
